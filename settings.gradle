@@ -1,0 +1,6 @@
+rootProject.name = 'poison-pill-experiments'
+include 'poison-pill-annotation'
+include 'common'
+include 'poison-pill-extension'
+include 'poison-pill-checkstyle'
+

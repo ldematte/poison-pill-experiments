@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation project(":poison-pill-annotation")
+    implementation project(":poison-pill-extension")
+    implementation project(":common")
+    annotationProcessor project(":poison-pill-annotation")
+    testAnnotationProcessor project(":poison-pill-annotation")
+    checkstyle project(":poison-pill-checkstyle")
+}
+
+checkstyle {
+    ignoreFailures = false
+
+    configurations {
+        checkstyle
+    }
+
+    dependencies{
+        checkstyle "com.puppycrawl.tools:checkstyle:10.12.4"
+        checkstyle project(":poison-pill-checkstyle")
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
